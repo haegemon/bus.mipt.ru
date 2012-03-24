@@ -12,9 +12,9 @@
 ?>
 <h1>"Here will table!)"</h1>
 <table>
-<?  while ($line = mysql_fetch_array($result, MYSQL_ASSOC))?>
+<?  while ($line = mysql_fetch_array($result, MYSQL_ASSOC)):?>
         <tr>
-        <?foreach ($line as $col_value)?>
+        <?foreach ($line as $col_value):?>
             <td>
                 <? echo $col_value;?>
             </td>
