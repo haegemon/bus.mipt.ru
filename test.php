@@ -8,22 +8,26 @@
 	mysql_select_db("bus_mipt", $db);
 	$query="SELECT * from main";
 	$result=mysql_query($query, $db);
-	print("Here will table!)");
-	print("<table>\n");
-        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    	    print("\t<tr>\n");
-    	    foreach ($line as $col_value) {
-    	        print("\t\t<td>$col_value</td>\n");
-    	    }
-    	    print("\t</tr>\n");
-    	}
-    	print("</table>\n");
+?>
+<h1>"Here will table!)"</h1>
+<table>
+<?  while ($line = mysql_fetch_array($result, MYSQL_ASSOC))?>
+        <tr>
+        <?foreach ($line as $col_value)?>
+            <td>
+                <? echo $col_value;?>
+            </td>
+        <?endforeach?>
+        </tr>
+    <?endwhile?>
+</table>
 
-    /* Освобождаем память от результата */
+<?    /* Освобождаем память от результата */
     mysql_free_result($result);
 
     /* Закрываем соединение */
     mysql_close($db);	
 ?>
+</table>
 </body>
 </html>
