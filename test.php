@@ -1,33 +1,43 @@
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><!--    -->
 <title>minimal.php</title>
 </head>
 <body>
+<center>
 <?
-	$db=mysql_connect("localhost", "root", "1379468250");
-	mysql_select_db("bus_mipt", $db);
-	$query="SELECT * from main";
+	include "connect.php";
+	$query="SELECT reis_name, reis_number, time(start_date), time(end_date), timediff(start_date, current_time) from main";
 	$result=mysql_query($query, $db);
 ?>
 <h1>"Here will table!)"</h1>
-<table>
-<?  while ($line = mysql_fetch_array($result, MYSQL_ASSOC))?>
-        <tr>
-        <?foreach ($line as $col_value)?>
-            <td>
-                <? echo $col_value;?>
-            </td>
-        <?endforeach?>
-        </tr>
-    <?endwhile?>
+<table border="2">
+<tr>
+	<td bgcolor="#E0E0E0"> <b>Название рейса</b></td>
+	<td bgcolor="#E0E0E0"> <b>Номер рейса</b></td>
+	<td bgcolor="#E0E0E0"> <b>Время отправления</b> </td>
+	<td bgcolor="#E0E0E0"> <b>Время прибытия</b> </td>
+	<td bgcolor="#FFFFFF"> <b><i>Оставшееся время</i></b> </td>
+</tr>
+<?	$i=2;  
+	while ($line = mysql_fetch_array($result, MYSQL_ASSOC)):?>
+		<? if($i%2==0):echo '<tr bgcolor="#FFFF14">'; else: echo '<tr bgcolor="#52FFA8">';?>
+		<?endif?>
+     			<?foreach ($line as $col_value):?>
+            			<td>
+                		<? echo $col_value;?>
+            			</td>
+        		<?endforeach?>
+        	</tr>
+	<?$i=$i+1;?>
+    	<?endwhile?>
 </table>
 
-<?    /* Освобождаем память от результата */
+<?
     mysql_free_result($result);
-
-    /* Закрываем соединение */
     mysql_close($db);	
 ?>
 </table>
+</center>
 </body>
 </html>
