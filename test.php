@@ -11,6 +11,7 @@
 	$result=mysql_query($query, $db);
 ?>
 <h1>"Here will table!)"</h1>
+<<<<<<< HEAD
 <table border="2">
 <tr>
 	<td bgcolor="#E0E0E0"> <b>Название рейса</b></td>
@@ -31,6 +32,18 @@
         	</tr>
 	<?$i=$i+1;?>
     	<?endwhile?>
+=======
+<table>
+<?  while ($line = mysql_fetch_array($result, MYSQL_ASSOC)):?>
+        <tr>
+        <?foreach ($line as $col_value):?>
+            <td>
+                <? echo $col_value;?>
+            </td>
+        <?endforeach?>
+        </tr>
+    <?endwhile?>
+>>>>>>> 14e2311d2307f7df5858a5bb2415f199b6d5044f
 </table>
 
 <?
