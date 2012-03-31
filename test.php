@@ -5,7 +5,10 @@
 </head>
 <body>
 <center>
-<?
+<?	
+	include("index.php");
+	echo "Здесь будет a";
+	echo $_REQUEST["a"];
 	include "connect.php";
 	$query="SELECT reis_name, reis_number, time(start_date), time(end_date), timediff(start_date, current_time) from main where timediff(start_date, current_time)>0 and hour(timediff(start_date, current_time))<1 order by timediff(start_date, current_time)";
 	$result=mysql_query($query, $db);
