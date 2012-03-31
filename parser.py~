@@ -47,7 +47,7 @@ for o in range(2000):
 
 #--------------------------------------------
 fd=open("testout.sql", 'w', encoding='utf-8')
-s='insert into main(reis_name, reis_number, start_date, end_date, type_of_day, type_of_reis) values('
+s='insert into main(reis_name, reis_number, start_date, end_date, type) values('
 for o in range(len(r_dr)):
 	s1=s+'"Долгопрудный-Речной вокзал", "368",'
 	if r_dr[o].get('place')=='Речной вокзал':
@@ -55,7 +55,7 @@ for o in range(len(r_dr)):
 		for key in de1.keys():
 			if key!='place':
 				for e in de1.get(key):
-					print(s1+e+','+'"'+key+'"'+',1'+');', file=fd)
+					print(s1+e+','+'"'+key+'"'+');', file=fd)
 
 
 for o in range(len(r_rd)):
@@ -65,4 +65,4 @@ for o in range(len(r_rd)):
 		for key in de1.keys():
 			if key!='place':
 				for e in de1.get(key):
-					print(s1+e+','+'"'+key+'"'+',-1'+');', file=fd)
+					print(s1+e+','+'"'+key+'"'+');', file=fd)
