@@ -1,14 +1,19 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"><!--    -->
+<meta name='Author' content='Каледин Стас'>
 <title>
 Добро пожаловать на сайт bus.mipt.ru
 </title>
 </head>
 <frameset rows="100, *, 10">
 <frame src="head.html" scrolling="no" noresize>
+
 <center>
-<?
+<?	
+	include("index.php");
+	echo "Здесь будет a";
+	echo $_REQUEST["a"];
 	include "connect.php";
 	$query="SELECT reis_name, reis_number, time(start_date), time(end_date), timediff(start_date, current_time) from main where timediff(start_date, current_time)>0 and hour(timediff(start_date, current_time))<1 order by timediff(start_date, current_time)";
 	$result=mysql_query($query, $db);
@@ -42,5 +47,7 @@
 ?>
 </table>
 </center>
+
 <frame src="end.html" scrolling="no" noresize>
+</frameset>
 </html>
