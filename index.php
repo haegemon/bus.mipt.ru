@@ -33,16 +33,19 @@ $iPathType = $iPathType ? $iPathType : 1;
 <td align='center' width=85%>
 <?
 	include "connect.php";
-    $query1 = "drop view if exists temp; create view temp(reis_name, reis_number, start_date, end_date, cur) as(SELECT reis_name, reis_number, time(start_date), time(end_date), timediff(start_date, current_time)from main where type_of_reis=".$iPathType.");";    
-    echo ' к '.$query1.' 3 ';
-	mysql_query($query1, $db);
-	if($iPathType == 'unfull'){
-		$query = "SELECT reis_name, reis_number, time(start_date), time(end_date), cur from temp where cur>0 and hour(cur)<1 order by cur;";
-        } elseif($iPathType == 'full'){
-            $query = "SELECT reis_name, reis_number, time(start_date), time(end_date), cur from temp where cur>0 order by cur;";
-            } else {
-                $query = "select reis_name, reis_number, time(start_date), time(end_date) from main where type_of_reis=".$iPathType.";";
-            }
+    	if($sTimeType=='unfull'){
+		$temp1=', timediff(start_date, current_time)';
+		$temp2=' and timediff(start_date, current_time)>0 and hour(timediff(start_date, current_time))<1 order by timediff(start_date, current_time);';
+	}
+	if($sTimeType=='full'){
+		$temp1=', timediff(start_date, current_time)';
+		$temp2=' and timediff(start_date, current_time)>0 order by timediff(start_date, current_time);';
+	}
+	if($sTimeType=='all'){
+		$temp1='';
+		$temp2=' order by start_date;';
+	}
+	$query="SELECT reis_name, reis_number, time(start_date), time(end_date) ".$temp1." from main where type_of_reis=".$iPathType."".$temp2."";
 	$result=mysql_query($query, $db);
 	
 	
