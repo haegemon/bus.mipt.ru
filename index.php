@@ -41,7 +41,7 @@ $iPathType = $iPathType ? $iPathType : 1;
         } elseif($iPathType == 'full'){
             $query = "SELECT reis_name, reis_number, time(start_date), time(end_date), cur from temp where cur>0 order by cur;";
             } else {
-                $query = "select reis_name, reis_number, time(start_date), time(end_date) from temp;";
+                $query = "select reis_name, reis_number, time(start_date), time(end_date) from main where type_of_reis=".$iPathType.";";
             }
 	$result=mysql_query($query, $db);
 	
