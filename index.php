@@ -22,15 +22,14 @@
 Вообще все <input type='radio' name='reis' value='all' <?if($_REQUEST['reis']=='all'){echo "checked";}?>><br>
 Все оставшиеся за день <input type='radio' name='reis' value='full' <?if($_REQUEST['reis']=='full'){echo "checked";}?>>
 <button name='radio' value='1'>Долгопрудная - Москва</button>
-<button name='radio' value='0'>Москва - Долгопрудная</button>
+<button name='radio1' value='1'>Москва - Долгопрудная</button>
 </form>
 <td align='center' width=85%>
 <?
 	include "connect.php";
-	$tt=$_REQUEST['radio'];
-	if($tt==1){
+	if($_REQUEST['radio']==1){
 		$query1="drop view if exists temp; create view temp(reis_name, reis_number, start_date, end_date, cur) as(SELECT reis_name, reis_number, time(start_date), time(end_date), timediff(start_date, current_time)from main where type_of_reis=1);";}
-	else if($tt==0){
+	else if($_REQUEST['radio1']==1){
 		$query1="drop view if exists temp; create view temp(reis_name, reis_number, start_date, end_date, cur) as(SELECT reis_name, reis_number, time(start_date), time(end_date), timediff(start_date, current_time)from main where type_of_reis=-1);";}
 	mysql_query($query1, $db);
 	if($_REQUEST['reis']=='unfull'){
