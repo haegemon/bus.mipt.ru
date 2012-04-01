@@ -14,7 +14,7 @@ def temp(f):
 
 url=ur.urlopen("http://www.mostransavto.ru/?page=rasp&code=-1546379448&ak=7&n=368&com=1")
 f=url.read().decode("cp1251")
-fd1=open("Речнойвокзал", 'w', encoding='utf-8')
+fd1=open("Речнойвокзал", 'w', encode='utf-8')
 print(f, file=fd1)
 """
 #---------------------------------------

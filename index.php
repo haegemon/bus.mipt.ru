@@ -3,6 +3,7 @@
 <meta name='Author' content='Kaledin Stas'>
 <meta name='Reply-to' content='stanislavkaledin@rambler.ru'>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<meta http-equiv='refresh' content='30' <?echo "URL=".$PHP_SELF.""?>>
 <title>
 Добро пожаловать на сайт bus.mipt.ru
 </title>
@@ -51,7 +52,7 @@ $iPathType = $iPathType ? $iPathType : 1;
 		$tempday=' and (type_of_day="пвсчп" or type_of_day="пвсчпсв")';}
 	else if(day==6 or day==0){
 		$tempday=' and (type_of_day="св" or type_of_day="пвсчпсв")';}
-	$query="SELECT reis_name, reis_number, time(start_date), time(end_date) ".$temp1." from main where type_of_reis=".$iPathType."".$tempday."".$temp2."";
+	$query="SELECT DISTINCT reis_name, reis_number, time(start_date), time(end_date) ".$temp1." from main where type_of_reis=".$iPathType."".$tempday."".$temp2."";
 	$result=mysql_query($query, $db);
 	
 	
@@ -92,7 +93,9 @@ $iPathType = $iPathType ? $iPathType : 1;
 <hr>
 <center>
 <small>
-Каледин Стас	2012<form action='mailto:stanislavkaledin@rambler.ru' method='post'>
+<B>WEB-MIPT</B>
+<hr width=20%>
+2012 г.
 </small>
 </center>
 </body>
