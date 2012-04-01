@@ -15,7 +15,7 @@
 <hr>
 <tr>
 <td align='left' valign='top' width=20%>
-<H3> Рейсы:</h3>
+<H1> Рейсы:</h1>
 <form action='index.php' method='get'>
 <H2>Показать за:</h2>
 <? 
@@ -24,9 +24,10 @@ $sTimeType = $sTimeType ? $sTimeType : 'unfull' ;
 $iPathType = $_REQUEST['path'];
 $iPathType = $iPathType ? $iPathType : 1;
 ?>
-За час <input type='radio' name='reis' value='unfull' <?if($sTimeType=='unfull'){echo "checked";}?>>
+За час <input type='radio' name='reis' value='unfull' <?if($sTimeType=='unfull'){echo "checked";}?>><br>
 Вообще все <input type='radio' name='reis' value='all' <?if($sTimeType=='all'){echo "checked";}?>><br>
 Все оставшиеся за день <input type='radio' name='reis' value='full' <?if($sTimeType=='full'){echo "checked";}?>>
+<hr>
 <button name='path' value='1'>Долгопрудная - Москва</button>
 <button name='path' value='-1'>Москва - Долгопрудная</button>
 </form>
@@ -45,7 +46,12 @@ $iPathType = $iPathType ? $iPathType : 1;
 		$temp1='';
 		$temp2=' order by start_date;';
 	}
-	$query="SELECT reis_name, reis_number, time(start_date), time(end_date) ".$temp1." from main where type_of_reis=".$iPathType."".$temp2."";
+	$day=date('w');
+	if(day==1 or day==2 or day==3 or day==4 or day==5){
+		$tempday=' and (type_of_day="пвсчп" or type_of_day="пвсчпсв")';}
+	else if(day==6 or day==0){
+		$tempday=' and (type_of_day="св" or type_of_day="пвсчпсв")';}
+	$query="SELECT reis_name, reis_number, time(start_date), time(end_date) ".$temp1." from main where type_of_reis=".$iPathType."".$tempday."".$temp2."";
 	$result=mysql_query($query, $db);
 	
 	
@@ -86,7 +92,7 @@ $iPathType = $iPathType ? $iPathType : 1;
 <hr>
 <center>
 <small>
-Каледин Стас	<form action='mailto:stanislavkaledin@rambler.ru' method='post'>
+Каледин Стас	2012<form action='mailto:stanislavkaledin@rambler.ru' method='post'>
 </small>
 </center>
 </body>
